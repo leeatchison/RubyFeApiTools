@@ -17,6 +17,13 @@ module RubyFeApiTools
           status[:status] = "success"
           status[:time_ms] = Process.clock_gettime(Process::CLOCK_MONOTONIC, :millisecond) - start if self.feapi_timing_enabled
           status
+        rescue Pundit::NotAuthorizedError => e
+          Rails.logger.error "API Authorization Error: #{err.message}"
+          status = {}
+          status[:status] = "error"
+          status[:status_message] = "Not authorized"
+          status[:time_ms] = Process.clock_gettime(Process::CLOCK_MONOTONIC, :millisecond) - start if self.feapi_timing_enabled
+          status
         rescue => err
           Rails.logger.error "API Error: #{err.message}"
           status = {}
