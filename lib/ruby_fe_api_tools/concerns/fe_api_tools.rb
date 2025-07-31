@@ -32,6 +32,14 @@ module RubyFeApiTools
         end
       end
 
+      def return_obj_with_errors(object_key, obj)
+        ret = { object_key=>obj.as_json }
+        if obj.respond_to?(:valid?) && (!obj.valid?)
+          ret[:errors] = obj.errors.map { |error| [ error.attribute, error.full_message ] }.to_h
+        end
+        ret
+      end
+
     end
   end
 end
