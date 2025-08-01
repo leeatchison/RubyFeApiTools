@@ -86,9 +86,4 @@ export async function fetchFromApp(url, options = {}, max_try_count = 3, delay =
   }
 }
 
-// export function handleFetchError(error,setMessage=null) {
-//   if(setMessage)
-//     setMessage(error.toString());
-// }
-
 window.fetchFromApp = fetchFromApp;
