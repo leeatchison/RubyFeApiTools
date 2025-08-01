@@ -18,8 +18,7 @@
 //
 //
 //
-// import {xxxcsrfToken} from "@core/csrf"
-export function xxxcsrfToken() {
+export function csrfToken() {
   return document.querySelector('meta[name="csrf-token"]').content;
 }
 
@@ -34,7 +33,7 @@ export async function fetchFromApp(url, options = {}, max_try_count = 3, delay =
     headers['Content-Type'] = 'application/json';
   if(options.csrf){
     delete options.csrf;
-    headers['X-CSRF-Token']=xxxcsrfToken();
+    headers['X-CSRF-Token']=csrfToken();
   }
   options.headers = headers
 
