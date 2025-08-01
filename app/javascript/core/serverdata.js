@@ -5,6 +5,7 @@ export function getServerData(name){
 
 export function getDataAttributes(element){
     const elementObj = document.getElementById(element);
+    if (!elementObj) return {};
     return Object.fromEntries(
         Object.entries(elementObj.dataset).map(([key, value]) => {
             // Try to parse the value as JSON in case it's a boolean/number/object
