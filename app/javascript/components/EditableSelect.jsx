@@ -14,6 +14,7 @@ const EditableSelect = ({
     };
 
     const handleChange = (e) => {
+        e.preventDefault();
         const newValue = e.target.value;
         setValue(newValue);
         onValueUpdate(newValue);
