@@ -14,6 +14,7 @@ export function datetimeToLocalDateTime(datetime){
 }
 export function datetimeToLocalDate(datetime){
     return datetime.toLocaleString('en-US',{
+        timeZone: 'UTC',
         year: 'numeric',
         month: '2-digit',
         day: '2-digit',
