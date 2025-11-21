@@ -21,4 +21,5 @@ export const FormInputText = ({fieldId,fieldName,fieldValue,label,hint,handleCha
         </>
     )
 }
-export const FormatInputText = FormInputText; // Backward-compatible version
+export const FormatInputText = FormInputText;
+
