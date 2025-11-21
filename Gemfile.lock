@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    RubyFeApiTools (0.1.3)
+    RubyFeApiTools (0.1.4)
       activerecord (>= 6.0)
       activesupport (>= 6.0)
 
