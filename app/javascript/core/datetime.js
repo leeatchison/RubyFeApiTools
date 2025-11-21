@@ -61,6 +61,7 @@ function updateAllDates(){
 }
 
 function setup(){
+    console.log("Setting up datetime...");
     updateAllDates();
 }
 
