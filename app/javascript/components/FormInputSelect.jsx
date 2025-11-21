@@ -11,7 +11,7 @@ export const FormInputSelect = ({fieldId,fieldName,fieldValue,fieldOptions,label
                     id={fieldId}
                     name={fieldName}
                     value={fieldValue}
-                    onValueUpdate={handleChange}
+                    onChange={handleChange}
                     onBlur={handleBlur}
                 >
                     {fieldOptions.map((option) => (
