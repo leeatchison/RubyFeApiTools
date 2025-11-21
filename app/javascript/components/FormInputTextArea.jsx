@@ -1,6 +1,7 @@
 import React from "react";
+import {FormInputText} from "./FormInputText";
 
-export const FormatInputTextArea = ({fieldId,fieldName,fieldValue,label,hint,handleChange,handleBlur,errorMsg, rows=5}) => {
+export const FormInputTextArea = ({fieldId,fieldName,fieldValue,label,hint,handleChange,handleBlur,errorMsg, rows=5}) => {
     return (
         <>
             <div
@@ -21,3 +22,4 @@ export const FormatInputTextArea = ({fieldId,fieldName,fieldValue,label,hint,han
         </>
     )
 }
+export const FormatInputTextArea = FormInputTextArea; // Backward-compatible version

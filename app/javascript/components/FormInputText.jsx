@@ -1,6 +1,6 @@
 import React from "react";
 
-export const FormatInputText = ({fieldId,fieldName,fieldValue,label,hint,handleChange,handleBlur,errorMsg}) => {
+export const FormInputText = ({fieldId,fieldName,fieldValue,label,hint,handleChange,handleBlur,errorMsg}) => {
     return (
         <>
             <div
@@ -21,3 +21,4 @@ export const FormatInputText = ({fieldId,fieldName,fieldValue,label,hint,handleC
         </>
     )
 }
+export const FormatInputText = FormInputText; // Backward-compatible version

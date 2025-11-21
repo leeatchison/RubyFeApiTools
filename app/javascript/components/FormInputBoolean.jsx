@@ -1,6 +1,6 @@
 import React from "react";
 
-export const FormatInputBoolean = ({fieldId,fieldName,fieldValue,label,hint,handleChange,handleBlur,errorMsg}) => {
+export const FormInputBoolean = ({fieldId,fieldName,fieldValue,label,hint,handleChange,handleBlur,errorMsg}) => {
     return (
         <>
             <div
@@ -21,3 +21,4 @@ export const FormatInputBoolean = ({fieldId,fieldName,fieldValue,label,hint,hand
         </>
     )
 }
+export const FormatInputBoolean = FormInputBoolean; // Backward-compatible version
