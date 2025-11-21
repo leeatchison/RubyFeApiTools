@@ -1,6 +1,6 @@
 import React from "react";
 
-export const FormatInputTextArea = ({fieldId,fieldName,fieldValue,label,hint,handleChange,errorMsg, rows=5}) => {
+export const FormatInputTextArea = ({fieldId,fieldName,fieldValue,label,hint,handleChange,handleBlur,errorMsg, rows=5}) => {
     return (
         <>
             <div
@@ -11,6 +11,7 @@ export const FormatInputTextArea = ({fieldId,fieldName,fieldValue,label,hint,han
                     id={fieldId}
                     name={fieldName}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     value={fieldValue}
                     rows={rows}
                 ></textarea>

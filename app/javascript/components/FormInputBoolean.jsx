@@ -1,6 +1,6 @@
 import React from "react";
 
-export const FormatInputBoolean = ({fieldId,fieldName,fieldValue,label,hint,handleChange,errorMsg}) => {
+export const FormatInputBoolean = ({fieldId,fieldName,fieldValue,label,hint,handleChange,handleBlur,errorMsg}) => {
     return (
         <>
             <div
@@ -12,6 +12,7 @@ export const FormatInputBoolean = ({fieldId,fieldName,fieldValue,label,hint,hand
                     name={fieldName}
                     checked={fieldValue}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                 />
                 {label && <label style={{display:"inline"}} htmlFor={fieldId}>{label}</label>}
                 {hint && <span className="hint">{hint}</span>}

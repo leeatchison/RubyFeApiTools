@@ -1,6 +1,6 @@
 import React from "react";
 
-export const FormatInputText = ({fieldId,fieldName,fieldValue,label,hint,handleChange,errorMsg}) => {
+export const FormatInputText = ({fieldId,fieldName,fieldValue,label,hint,handleChange,handleBlur,errorMsg}) => {
     return (
         <>
             <div
@@ -13,6 +13,7 @@ export const FormatInputText = ({fieldId,fieldName,fieldValue,label,hint,handleC
                     name={fieldName}
                     value={fieldValue}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                 />
                 {hint && <span className="hint">{hint}</span>}
                 {errorMsg && <span className="error">{errorMsg}</span>}
