@@ -51,7 +51,10 @@ function updateAllDates(){
         timeZoneName: 'short'
     });
 
+    console.log("Updating all dates...");
+
     document.querySelectorAll('span[data-iso-date]').forEach(span => {
+        console.log("Updating date:",span);
         const isoDate = span.dataset.isoDate;
         span.textContent = formatter.format(new Date(isoDate));
     });
