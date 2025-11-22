@@ -112,18 +112,26 @@ function setup_authentication(){
 //
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-function setup(options = {}) {
-    // Merge options into config while keeping defaults for unspecified fields
-    if (options.registrationUrl) config.registrationUrl = options.registrationUrl;
-    if (options.authenticationUrl) config.authenticationUrl = options.authenticationUrl;
-    if (options.registerFormId) config.registerFormId = options.registerFormId;
-    if (options.loginButtonId) config.loginButtonId = options.loginButtonId;
-    if (options.redirectAfterAuthPath !== undefined) {
-        config.redirectAfterAuthPath = options.redirectAfterAuthPath;
-    }
-
+// LEELEE: take out options in setup...
+function setup() {
     document.addEventListener("DOMContentLoaded", () => {
         setup_registration();
+        setup_authentication();
+    });
+}
+// LEELEE:
+function setupWebAuthnRegistration(options){
+    config.registrationUrl = options.registrationUrl;
+    config.registerFormId = options.registerFormId;
+    document.addEventListener("DOMContentLoaded", () => {
+        setup_registration();
+    });
+}
+function setupWebAuthnAuthentication(options){
+    config.authenticationUrl = options.authenticationUrl;
+    config.loginButtonId = options.loginButtonId;
+    config.redirectAfterAuthPath = options.redirectAfterAuthPath;
+    document.addEventListener("DOMContentLoaded", () => {
         setup_authentication();
     });
 }
@@ -132,4 +140,6 @@ export default {
     setup,
     registerPasskey,
     authenticatePasskey,
+    setupWebAuthnRegistration,
+    setupWebAuthnAuthentication
 };
