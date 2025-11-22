@@ -49,7 +49,6 @@ export async function registerPasskey(nickname) {
 }
 function setup_registration(){
     if(config.registerFormId === 'disabled'){
-        console.log("Passkey registration form ID not set; skipping registration setup.");
         return;
     }
     const regForm = document.getElementById(config.registerFormId);
@@ -89,7 +88,6 @@ export async function authenticatePasskey() {
 }
 function setup_authentication(){
     if(config.loginButtonId === 'disabled'){
-        console.log("Passkey login form ID not set; skipping login setup.");
         return;
     }
     const passkeyButton = document.getElementById(config.loginButtonId);
@@ -115,8 +113,6 @@ function setup_authentication(){
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 function setup(options = {}) {
-    console.log(" Passkey.setup: options=", options);
-
     // Merge options into config while keeping defaults for unspecified fields
     if (options.registrationUrl) config.registrationUrl = options.registrationUrl;
     if (options.authenticationUrl) config.authenticationUrl = options.authenticationUrl;
@@ -125,8 +121,6 @@ function setup(options = {}) {
     if (options.redirectAfterAuthPath !== undefined) {
         config.redirectAfterAuthPath = options.redirectAfterAuthPath;
     }
-
-    console.log("WebAuthn Passkey setup: config=", config);
 
     document.addEventListener("DOMContentLoaded", () => {
         setup_registration();
