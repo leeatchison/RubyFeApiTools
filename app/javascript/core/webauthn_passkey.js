@@ -48,7 +48,7 @@ export async function registerPasskey(nickname) {
     },1);
 }
 function setup_registration(){
-    if(config.registerFormId === ''){
+    if(config.registerFormId === 'disabled'){
         console.log("Passkey registration form ID not set; skipping registration setup.");
         return;
     }
@@ -88,7 +88,7 @@ export async function authenticatePasskey() {
     return true;
 }
 function setup_authentication(){
-    if(config.loginButtonId === ''){
+    if(config.loginButtonId === 'disabled'){
         console.log("Passkey login form ID not set; skipping login setup.");
         return;
     }
