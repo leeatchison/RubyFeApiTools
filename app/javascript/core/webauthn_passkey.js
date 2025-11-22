@@ -115,6 +115,8 @@ function setup(options = {}) {
         config.redirectAfterAuthPath = options.redirectAfterAuthPath;
     }
 
+    console.log("WebAuthn Passkey setup:", config);
+
     document.addEventListener("DOMContentLoaded", () => {
         if (config.registrationUrl) setup_registration();
         if (config.authenticationUrl) setup_authentication();
