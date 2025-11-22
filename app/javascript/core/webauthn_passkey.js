@@ -107,6 +107,8 @@ function setup_authentication(){
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 function setup(options = {}) {
+    console.log(" Passkey.setup: options=", options);
+
     // Merge options into config while keeping defaults for unspecified fields
     if (options.basePath) config.basePath = options.basePath;
     if (options.registerFormId) config.registerFormId = options.registerFormId;
@@ -115,7 +117,7 @@ function setup(options = {}) {
         config.redirectAfterAuthPath = options.redirectAfterAuthPath;
     }
 
-    console.log("WebAuthn Passkey setup:", config);
+    console.log("WebAuthn Passkey setup: config=", config);
 
     document.addEventListener("DOMContentLoaded", () => {
         if (config.registrationUrl) setup_registration();
