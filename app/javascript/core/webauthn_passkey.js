@@ -48,6 +48,10 @@ export async function registerPasskey(nickname) {
     },1);
 }
 function setup_registration(){
+    if(config.registerFormId === ''){
+        console.log("Passkey registration form ID not set; skipping registration setup.");
+        return;
+    }
     const regForm = document.getElementById(config.registerFormId);
     if (regForm) {
         regForm.addEventListener("submit", async (e) => {
@@ -84,6 +88,10 @@ export async function authenticatePasskey() {
     return true;
 }
 function setup_authentication(){
+    if(config.loginButtonId === ''){
+        console.log("Passkey login form ID not set; skipping login setup.");
+        return;
+    }
     const passkeyButton = document.getElementById(config.loginButtonId);
     if (passkeyButton) {
         passkeyButton.addEventListener("click", async (e) => {
@@ -121,8 +129,8 @@ function setup(options = {}) {
     console.log("WebAuthn Passkey setup: config=", config);
 
     document.addEventListener("DOMContentLoaded", () => {
-        if (config.registrationUrl) setup_registration();
-        if (config.authenticationUrl) setup_authentication();
+        setup_registration();
+        setup_authentication();
     });
 }
 
