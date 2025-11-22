@@ -112,14 +112,23 @@ function setup_authentication(){
 //
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// LEELEE: take out options in setup...
 function setup() {
     document.addEventListener("DOMContentLoaded", () => {
         setup_registration();
         setup_authentication();
     });
 }
-// LEELEE:
+function setupWebAuthn(options){
+    config.registrationUrl = options.registrationUrl;
+    config.registerFormId = options.registerFormId;
+    config.authenticationUrl = options.authenticationUrl;
+    config.loginButtonId = options.loginButtonId;
+    config.redirectAfterAuthPath = options.redirectAfterAuthPath;
+    document.addEventListener("DOMContentLoaded", () => {
+        setup_registration();
+        setup_authentication();
+    });
+}
 function setupWebAuthnRegistration(options){
     config.registrationUrl = options.registrationUrl;
     config.registerFormId = options.registerFormId;
@@ -140,6 +149,7 @@ export default {
     setup,
     registerPasskey,
     authenticatePasskey,
+    setupWebAuthn,
     setupWebAuthnRegistration,
     setupWebAuthnAuthentication
 };
