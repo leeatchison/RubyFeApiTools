@@ -12,6 +12,24 @@
 import * as webauthn from "@github/webauthn-json";
 import {fetchFromApp} from "@commoncore/fetch_from_app.js"
 
+//
+//
+// Config with backward‑compatible defaults
+//
+//
+const config = {
+    // Path prefix; matches current behavior
+    registrationUrl: "/feapi/webauthn/registration",
+    authenticationUrl: "/feapi/webauthn/authentication",
+
+    // Element IDs; match current behavior
+    registerFormId: "register-passkey-form",
+    loginButtonId: "passkey-login-button",
+
+    // Optional: redirect URL after successful authentication
+    redirectAfterAuthPath: "/redirect_after_auth",
+};
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //
@@ -20,9 +38,9 @@ import {fetchFromApp} from "@commoncore/fetch_from_app.js"
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 export async function registerPasskey(nickname) {
-    const options = await fetchFromApp("/feapi/webauthn/registration",{},1);
+    const options = await fetchFromApp(config.registrationUrl,{},1);
     const credential = await webauthn.create({publicKey: options.publicKey});
-    await fetchFromApp("/feapi/webauthn/registration", {
+    await fetchFromApp(config.registrationUrl, {
         method: "POST",
         csrf: true,
         headers: { "Content-Type": "application/json" },
@@ -30,7 +48,7 @@ export async function registerPasskey(nickname) {
     },1);
 }
 function setup_registration(){
-    const regForm = document.getElementById("register-passkey-form");
+    const regForm = document.getElementById(config.registerFormId);
     if (regForm) {
         regForm.addEventListener("submit", async (e) => {
             e.preventDefault();
@@ -54,9 +72,9 @@ function setup_registration(){
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 export async function authenticatePasskey() {
-    const options = await fetchFromApp('/feapi/webauthn/authentication',{},1);
+    const options = await fetchFromApp(config.authenticationUrl,{},1);
     const credential = await webauthn.get(options);
-    await fetchFromApp("/feapi/webauthn/authentication", {
+    await fetchFromApp(config.authenticationUrl, {
         method: "POST",
         csrf: true,
         headers: { "Content-Type": "application/json" },
@@ -66,13 +84,13 @@ export async function authenticatePasskey() {
     return true;
 }
 function setup_authentication(){
-    const passkeyButton = document.getElementById("passkey-login-button");
+    const passkeyButton = document.getElementById(config.loginButtonId);
     if (passkeyButton) {
         passkeyButton.addEventListener("click", async (e) => {
             e.preventDefault();
             try {
                 await authenticatePasskey();
-                window.location.href = "/redirect_after_auth";
+                window.location.href = config.redirectAfterAuthPath;
             } catch (err) {
                 console.log(err);
                 alert("Passkey Login Failed. Is it set up properly?\nGo to Settings->Credentials to set it up.");
@@ -88,12 +106,23 @@ function setup_authentication(){
 //
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-function setup(){
+function setup(options = {}) {
+    // Merge options into config while keeping defaults for unspecified fields
+    if (options.basePath) config.basePath = options.basePath;
+    if (options.registerFormId) config.registerFormId = options.registerFormId;
+    if (options.loginButtonId) config.loginButtonId = options.loginButtonId;
+    if (options.redirectAfterAuthPath !== undefined) {
+        config.redirectAfterAuthPath = options.redirectAfterAuthPath;
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
-        setup_registration();
-        setup_authentication();
+        if (config.registrationUrl) setup_registration();
+        if (config.authenticationUrl) setup_authentication();
     });
 }
+
 export default {
-    setup
+    setup,
+    registerPasskey,
+    authenticatePasskey,
 };
