@@ -110,7 +110,8 @@ function setup(options = {}) {
     console.log(" Passkey.setup: options=", options);
 
     // Merge options into config while keeping defaults for unspecified fields
-    if (options.basePath) config.basePath = options.basePath;
+    if (options.registrationUrl) config.registrationUrl = options.registrationUrl;
+    if (options.authenticationUrl) config.authenticationUrl = options.authenticationUrl;
     if (options.registerFormId) config.registerFormId = options.registerFormId;
     if (options.loginButtonId) config.loginButtonId = options.loginButtonId;
     if (options.redirectAfterAuthPath !== undefined) {
