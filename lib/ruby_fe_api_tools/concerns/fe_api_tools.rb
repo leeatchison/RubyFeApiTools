@@ -23,6 +23,12 @@ module RubyFeApiTools
           status[:status_message] = "Not Authorized"
           status[:time_ms] = Process.clock_gettime(Process::CLOCK_MONOTONIC, :millisecond) - start if self.feapi_timing_enabled
           status
+        rescue ActiveRecord::RecordNotFound => err
+          status = {}
+          status[:status] = "error"
+          status[:status_message] = "Record Not Found"
+          status[:time_ms] = Process.clock_gettime(Process::CLOCK_MONOTONIC, :millisecond) - start if self.feapi_timing_enabled
+          status
         rescue => err
           status = {}
           status[:status] = "error"
