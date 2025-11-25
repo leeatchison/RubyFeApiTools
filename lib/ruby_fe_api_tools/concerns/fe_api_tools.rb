@@ -32,7 +32,8 @@ module RubyFeApiTools
         rescue => err
           status = {}
           status[:status] = "error"
-          status[:status_message] = err.message
+          Rails.logger.error "Error in FE API: #{err.message}"
+          status[:status_message] = "An unknown error occurred."
           status[:time_ms] = Process.clock_gettime(Process::CLOCK_MONOTONIC, :millisecond) - start if self.feapi_timing_enabled
           skip_authorization
           status
