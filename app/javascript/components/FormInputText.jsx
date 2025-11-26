@@ -1,6 +1,6 @@
 import React from "react";
 
-export const FormInputText = ({fieldId,fieldName,fieldType,fieldValue,label,hint,handleChange,handleBlur,errorMsg}) => {
+export const FormInputText = ({fieldId,fieldName,fieldType,fieldPlaceholder,fieldValue,label,hint,handleChange,handleBlur,errorMsg}) => {
     return (
         <>
             <div
@@ -14,6 +14,7 @@ export const FormInputText = ({fieldId,fieldName,fieldType,fieldValue,label,hint
                     value={fieldValue}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    placeHolder={fieldPlaceholder}
                 />
                 {hint && <span className="hint">{hint}</span>}
                 {errorMsg && <span className="error">{errorMsg}</span>}
