@@ -14,7 +14,7 @@ export const FormInputText = ({fieldId,fieldName,fieldType,fieldPlaceholder,fiel
                     value={fieldValue}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    placeHolder={fieldPlaceholder}
+                    placeholder={fieldPlaceholder}
                 />
                 {hint && <span className="hint">{hint}</span>}
                 {errorMsg && <span className="error">{errorMsg}</span>}
