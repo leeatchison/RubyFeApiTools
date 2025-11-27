@@ -30,7 +30,7 @@ module RubyFeApiTools
           status[:time_ms] = Process.clock_gettime(Process::CLOCK_MONOTONIC, :millisecond) - start if self.feapi_timing_enabled
           skip_authorization
           status
-        rescue RuntimeError => e
+        rescue RuntimeError => err
           status = {}
           status[:status] = "error"
           Rails.logger.error "Error in FE API [string]: #{err.message}"
